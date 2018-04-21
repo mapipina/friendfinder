@@ -10,7 +10,9 @@
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
 
     <!-- Material Kit CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/css/material-kit.css">
@@ -32,6 +34,20 @@
         .index-page .header-filter:after {
             background: -webkit-linear-gradient(135deg, #fff59d 0%, rgba(125, 46, 185, 0.45) 100%);
         }
+        div.text-center {
+            position: relative;
+            z-index: 2;
+        }
+        .index-page .brand h3 {
+            font-family: 'Raleway', sans-serif;
+        }
+        div.copyright.pull-right {
+            color: white;
+        }
+        div.copyright.pull-right a {
+            text-decoration: none;
+            color: black;
+        }
     </style>
   </head>
 
@@ -43,18 +59,41 @@
                 <div class="col-md-8 ml-auto mr-auto">
                     <div class="brand">
                         <h1>Friend Finder</h1>
-                        <h3>Find your next BFF after taking a short—and fun—quiz!</h3>
+                        <h3>Find your next BFF after taking a short quiz!</h3>
                     </div>
                 </div>
             </div>
         </div>
         <div class="text-center">
-            <button style="left: 45%;text-align:center;" class="btn btn-primary btn-round">
+            <a href="./survey.html"><button style="left: 45%;text-align:center;" class="btn btn-primary btn-round">
                 <i class="material-icons">question_answer</i> Go to quiz
                 <div class="ripple-container">
                 </div>
-            </button>
+            </button></a>
         </div>
+    </div>
+    <footer class="footer ">
+        <div class="container">
+            <nav class="pull-left">
+                <ul>
+                    <li>
+                        <a href="/api/friends">
+                            API Friends List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/mapipina/friendfinder">
+                            Github Repo 
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="copyright pull-right">
+                ©2018, made with <i class="material-icons">favorite</i> by
+                <a href="https://www.linkedin.com/in/mapipina/" target="_blank">Mapi Pina</a>
+            </div>
+        </div>
+    </footer>
         
 
     <!--   Core JS Files   -->
