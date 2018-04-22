@@ -19,9 +19,12 @@
   },
   "homepage": "https://github.com/mapipina/friendfinder#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
     "moment": "^2.22.1",
     "nouislider": "^11.1.0",
     "npm": "^5.8.0",
+    "path": "^0.12.7",
     "require": "^2.4.20"
   }
 }
