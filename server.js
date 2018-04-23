@@ -16,107 +16,14 @@ app.use(bodyParser.json());
 // Making sure files in public folder are accessed:
 app.use(express.static('public'));
 
-// // BFFs
-// // =============================================================
-// var besties = [
-//   {
-//   "name":"Mikey",
-//   "photo":"https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg",
-//   "scores":[
-//       5,
-//       1,
-//       4,
-//       4,
-//       5,
-//       1,
-//       2,
-//       5,
-//       4,
-//       1
-//     ]
-//   },
-//   {
-//   "name":"Katie",
-//   "photo":"https://pmcvariety.files.wordpress.com/2017/09/katie-holmes.jpg",
-//   "scores":[
-//       5,
-//       1,
-//       4,
-//       4,
-//       3,
-//       2,
-//       2,
-//       3,
-//       3,
-//       2
-//     ]
-//   },
-//   {
-//   "name":"Mario",
-//   "photo":"https://pbs.twimg.com/media/DU6e3nUVMAEh-DL.png",
-//   "scores":[
-//       5,
-//       5,
-//       5,
-//       5,
-//       5,
-//       5,
-//       5,
-//       5,
-//       5,
-//       5
-//     ]
-//   }
-// ];
+// ================================================================================
+// ROUTER
+// The below points our server to a series of "route" files.
+// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
+// ================================================================================
 
-// // Routes
-// // =============================================================
-
-// // Basic route that sends the user first to the AJAX Page
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname, "home.html"));
-// });
-
-// app.get("/survey", function(req, res) {
-//   res.sendFile(path.join(__dirname, "survey.html"));
-// });
-
-// // Displays all characters
-// app.get("/api/friends", function(req, res) {
-//   return res.json(besties);
-// });
-
-// // Displays a single character, or returns false
-// app.get("/api/characters/:character", function(req, res) {
-//   var chosen = req.params.character;
-
-//   console.log(chosen);
-
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
-
-//   return res.json(false);
-// });
-
-// // Create New Characters - takes in JSON input
-// app.post("/api/characters", function(req, res) {
-//   // req.body hosts is equal to the JSON post sent from the user
-//   // This works because of our body-parser middleware
-//   var newcharacter = req.body;
-
-//   // Using a RegEx Pattern to remove spaces from newCharacter
-//   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-//   newcharacter.routeName = newcharacter.name.replace(/\s+/g, "").toLowerCase();
-
-//   console.log(newcharacter);
-
-//   characters.push(newcharacter);
-
-//   res.json(newcharacter);
-// });
+require("./routing/apiRoutes")(app);
+require("./routing/htmlRoutes")(app);
 
 // Starts the server to begin listening
 // =============================================================
