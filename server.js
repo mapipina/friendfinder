@@ -13,6 +13,9 @@ var PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Making sure files in public folder are accessed:
+app.use(express.static('public'));
+
 // // BFFs
 // // =============================================================
 // var besties = [
