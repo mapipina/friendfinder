@@ -1,4 +1,5 @@
 let server = require('../../server.js');
+let friends = require('../data/friends.js');
 
 // Routes
 // =============================================================
