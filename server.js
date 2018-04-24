@@ -4,8 +4,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let path = require("path");
 
-// Sets up Express
-// =============================================================
+// Express npm and port
 var app = express();
 var PORT = process.env.PORT || 8080;
 
@@ -15,6 +14,7 @@ app.use(bodyParser.json());
 
 // Making sure files in public folder are accessed:
 app.use(express.static('public'));
+app.use('/static', express.static(path.join(__dirname, './app/public')))
 
 // ================================================================================
 // ROUTER
