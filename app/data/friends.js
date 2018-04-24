@@ -1,5 +1,5 @@
-// BFFs
-// =============================================================
+// Array of BFFs
+
 var besties = [
   {
   "name":"Mikey",
@@ -50,3 +50,5 @@ var besties = [
     ]
   }
 ];
+
+module.exports = besties;
