@@ -13,8 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Making sure files in public folder are accessed:
-app.use(express.static('public'));
-app.use('/static', express.static(path.join(__dirname, './app/public')))
+app.use(express.static('./app/public'));
+// app.use('/static', express.static(path.join(__dirname, './app/public')))
 
 // ================================================================================
 // ROUTER
