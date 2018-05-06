@@ -6,13 +6,10 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-
-
     <!-- Material Kit CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/css/material-kit.css">
 
@@ -86,6 +83,9 @@
                 background-image: url(./images/friend-finder_OG.jpg);
             }
         }
+        .modal-content {
+          display: hidden;
+        }
     </style>
   </head>
 
@@ -111,12 +111,12 @@
                 <h3><strong>About You</strong></h3>
                 <div class="col-lg-3 col-sm-4">
                     <div class="form-group has-default bmd-form-group">
-                        <input type="text" class="form-control" placeholder="Name">
+                        <input type="text" id="name" class="form-control" placeholder="Name">
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-4">
                     <div class="form-group has-default bmd-form-group">
-                        <input type="url" class="form-control" placeholder="Photo link">
+                        <input type="url" id="image" class="form-control" placeholder="Photo link">
                     </div>
                 </div>
             </div>
@@ -244,7 +244,30 @@
             </div>
         </div>
     </div>
+  <!-- Form ends -->
 
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h2 class="modal-title">Your New BFF</h2>
+          </div>
+          <div class="modal-body">
+            <h2 id="match-name"></h2>
+            <img id="match-img">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- Modal ends -->
+
+  <!--   Footer begins -->
     <footer class="footer ">
         <div class="container">
             <nav class="pull-left">
@@ -269,15 +292,47 @@
     </footer>
         
 
-    <!--   Core JS Files   -->
+<!--   Core JS Files   -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://demos.creative-tim.com/material-kit/assets/assets-for-demo/js/material-kit-demo.js"></script>
     <script src="https://demos.creative-tim.com/material-kit/assets/js/core/popper.min.js"></script>
     <script src="https://demos.creative-tim.com/material-kit/assets/js/bootstrap-material-design.min.js"></script>
     <script type="text/javascript" src="https://demos.creative-tim.com/material-kit/assets/js/plugins/moment.min.js"></script>
 
-    <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
+<!-- Material Kit CDN link of older version since I can't have external CSS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/js/material-kit.js"></script>
+    
+    <!-- JS script for survey send -->
+<script type="text/javascript">
+  $('#submit').on("click", function(event) {
+    event.preventDefault();
+      var userInput = {
+        name: $('#name').val().trim(),
+        photo: $('#photo').val().trim(),
+        scores: [
+        $('#q1').val().trim(),
+        $('#q2').val().trim(),
+        $('#q3').val().trim(),
+        $('#q4').val().trim(),
+        $('#q5').val().trim(),
+        $('#q6').val().trim(),
+        $('#q7').val().trim(),
+        $('#q8').val().trim(),
+        $('#q9').val().trim(),
+        $('#q10').val().trim(),
+        ]
+      };
+      console.log(userInput);
+      //add user inputs to friends list.THEN
+      $.post("/api/friends", userInput).done(function(data){
+        //THEN push matched friend names and image to modal
+        $('#match-name').html(data.matchName);
+        $('#match-img').attr("src",  data.matchImage);
+      });
+      //Opren the modal dialog
+      $('#results-modal').modal('open');
+  });
+</script>
 
 
   </body>
