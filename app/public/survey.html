@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/css/material-kit.css">
 
     <script type="text/javascript" src="../data/friends.js"></script>
+    <script type="text/javascript" src="../../server.js"></script>
 
     <style type="text/css">
         /*body {
@@ -303,36 +304,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/js/material-kit.js"></script>
     
     <!-- JS script for survey send -->
-<script type="text/javascript">
-  $('#submit').on("click", function(event) {
-    event.preventDefault();
-      var userInput = {
-        name: $('#name').val().trim(),
-        photo: $('#photo').val().trim(),
-        scores: [
-        $('#q1').val().trim(),
-        $('#q2').val().trim(),
-        $('#q3').val().trim(),
-        $('#q4').val().trim(),
-        $('#q5').val().trim(),
-        $('#q6').val().trim(),
-        $('#q7').val().trim(),
-        $('#q8').val().trim(),
-        $('#q9').val().trim(),
-        $('#q10').val().trim(),
-        ]
-      };
-      console.log(userInput);
-      //add user inputs to friends list.THEN
-      $.post("/api/friends", userInput).done(function(data){
-        //THEN push matched friend names and image to modal
-        $('#match-name').html(data.matchName);
-        $('#match-img').attr("src",  data.matchImage);
+    <script type="text/javascript">
+      $('#submit').on("click", function(event) {
+        event.preventDefault();
+          var userInput = {
+            name: $('#name').val().trim(),
+            photo: $('#photo').val().trim(),
+            scores: [
+            $('#q1').val().trim(),
+            $('#q2').val().trim(),
+            $('#q3').val().trim(),
+            $('#q4').val().trim(),
+            $('#q5').val().trim(),
+            $('#q6').val().trim(),
+            $('#q7').val().trim(),
+            $('#q8').val().trim(),
+            $('#q9').val().trim(),
+            $('#q10').val().trim(),
+            ]
+          };
+          console.log(userInput);
+          //add user inputs to friends list.THEN
+          $.post("/api/friends", userInput).done(function(data){
+            //THEN push matched friend names and image to modal
+            $('#match-name').html(data.matchName);
+            $('#match-img').attr("src",  data.matchImage);
+          });
+          //Opren the modal dialog
+          $('#results-modal').modal('open');
       });
-      //Opren the modal dialog
-      $('#results-modal').modal('open');
-  });
-</script>
+    </script>
 
 
   </body>
