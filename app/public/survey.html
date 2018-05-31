@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <!-- Material Kit CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/css/material-kit.css">
+
 
     <script type="text/javascript" src="../data/friends.js"></script>
     <script type="text/javascript" src="../../server.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style type="text/css">
         /*body {
             background-image: url(./images/friend-finder.jpg);
@@ -240,32 +242,15 @@
             <br>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
-     Submit</button>
+    <button type="button" id="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+<!--     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+     Submit</button> -->
             </div>
         </div>
     </div>
   <!-- Form ends -->
-
-    <!-- Modal -->
-<!--     <div id="myModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h2 class="modal-title">Your New BFF</h2>
-          </div>
-          <div class="modal-body">
-            <h2 id="match-name"></h2>
-            <img id="match-img">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  <!-- Modal ends -->
 
   <!--   Footer begins -->
     <footer class="footer ">
@@ -291,9 +276,29 @@
         </div>
     </footer>
         
+    <!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Modal ends -->
 
-<!--   Core JS Files   -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     
     <!-- JS script for survey send -->
@@ -333,7 +338,7 @@
           $.post(currentURL + "/api/friends", userInput, function(data){
           //Opren the modal dialog
           $('#myModal').modal('toggle');
-          alert("working");
+          // alert("working");
           });      
         } else {
           alert("Please fill out all fields!")
