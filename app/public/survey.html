@@ -248,9 +248,8 @@
   <!-- Form ends -->
 
     <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
+<!--     <div id="myModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
-        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -265,7 +264,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   <!-- Modal ends -->
 
   <!--   Footer begins -->
@@ -295,46 +294,55 @@
 
 <!--   Core JS Files   -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://demos.creative-tim.com/material-kit/assets/assets-for-demo/js/material-kit-demo.js"></script>
-    <script src="https://demos.creative-tim.com/material-kit/assets/js/core/popper.min.js"></script>
-    <script src="https://demos.creative-tim.com/material-kit/assets/js/bootstrap-material-design.min.js"></script>
-    <script type="text/javascript" src="https://demos.creative-tim.com/material-kit/assets/js/plugins/moment.min.js"></script>
 
-<!-- Material Kit CDN link of older version since I can't have external CSS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-kit/1.1.0/js/material-kit.js"></script>
     
     <!-- JS script for survey send -->
     <script type="text/javascript">
       $('#submit').on("click", function(event) {
         event.preventDefault();
+        function formValidation() {
+          var isValid = true;
+          $(".form-control").each(function(){
+            if ($(this).val() === "") {
+              isValid = false;
+            }
+          });
+          return isValid;
+        }
+
+        if (formValidation) {
           var userInput = {
-            name: $('#name').val().trim(),
-            photo: $('#photo').val().trim(),
+            name: $('#name').val(),
+            photo: $('#photo').val(),
             scores: [
-            $('#q1').val().trim(),
-            $('#q2').val().trim(),
-            $('#q3').val().trim(),
-            $('#q4').val().trim(),
-            $('#q5').val().trim(),
-            $('#q6').val().trim(),
-            $('#q7').val().trim(),
-            $('#q8').val().trim(),
-            $('#q9').val().trim(),
-            $('#q10').val().trim(),
+            $('#q1').val(),
+            $('#q2').val(),
+            $('#q3').val(),
+            $('#q4').val(),
+            $('#q5').val(),
+            $('#q6').val(),
+            $('#q7').val(),
+            $('#q8').val(),
+            $('#q9').val(),
+            $('#q10').val(),
             ]
           };
-          console.log(userInput);
-          //add user inputs to friends list.THEN
-          $.post("/api/friends", userInput).done(function(data){
-            //THEN push matched friend names and image to modal
-            $('#match-name').html(data.matchName);
-            $('#match-img').attr("src",  data.matchImage);
-          });
+          console.log(userInput);    
+
+          var currentURL = window.location.origin;
+          $.post(currentURL + "/api/friends", userInput, function(data){
           //Opren the modal dialog
-          $('#results-modal').modal('open');
+          $('#myModal').modal('toggle');
+          alert("working");
+          });      
+        } else {
+          alert("Please fill out all fields!")
+        }
+
+        return false;
+
       });
     </script>
-
 
   </body>
 </html>

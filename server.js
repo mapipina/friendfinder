@@ -1,5 +1,3 @@
-// Dependencies
-// =============================================================
 let express = require('express');
 let bodyParser = require('body-parser');
 let path = require("path");
@@ -14,13 +12,6 @@ app.use(bodyParser.json());
 
 // Making sure files in public folder are accessed:
 app.use(express.static('./app/public'));
-// app.use('/static', express.static(path.join(__dirname, './app/public')))
-
-// ================================================================================
-// ROUTER
-// The below points our server to a series of "route" files.
-// These routes give our server a "map" of how to respond when users visit or request data from various URLs.
-// ================================================================================
 
 require("./app/routing/apiRoutes")(app);
 require("./app/routing/htmlRoutes")(app);

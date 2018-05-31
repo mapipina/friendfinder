@@ -1,5 +1,4 @@
 // Array of BFFs
-
 var besties = [
   {
   "name":"Mikey",

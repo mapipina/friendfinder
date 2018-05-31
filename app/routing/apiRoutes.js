@@ -1,4 +1,4 @@
-let friends = require('../data/friends');
+var friends = require('../data/friends');
 
 module.exports = function(app) {
 	app.get("/api/friends", function(req, res) {
@@ -6,32 +6,36 @@ module.exports = function(app) {
 	});
 
 	app.post("/api/friends", function(req, res) {
-	  //capture of the user input object
-	  var userInput = req.body;
-	  var userResponses = userInput.scores;
-	  //best friend match portion
-	  //set up best friend variables
-	  var matchName = '';
-	  var matchImage = '';
-	  var totalDifference = 10000; 
-	    // The difference between scores
-	      for (var i = 0; i < friends.length; i++){
-	          var diff = 0;
-	          for (var j = 0; j < userResponses.length; j++){
-	            diff += Math.abs(friends[i].scores[j] - userResponses[j]);
-	          }
-	          
-	        if (diff < totalDifference) {
-	          totalDifference = diff
-	          matchName = friends[i].name;
-	          matchImage = friends[i].photo;
-	        }
-	      }  
-		friends.push(userInput);
+		var bestMatch = {
+			name: "",
+			photo: "",
+			friendDifference: 1000
+		};
 
-	  //push corresponding friend match
-	  res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+		console.log(req.body);
 
+	var userInput = req.body;
+	var userResponses = userInput.scores;
+
+	var totalDifference = 0; 
+
+	for (var i = 0; i < friends.length; i++) {
+		console.log(friends[i].name);
+		totalDifference = 0;
+
+		for (var j = 0; j < friends[i].scores[j]; j++) {
+			totalDifference += Math.abs(parseInt(userResponses[j]) - parseInt(friends[i].scores[j]));
+
+			if (totalDifference <= bestMatch.friendDifference) {
+				bestMatch.name = friends[i].name;
+				bestMatch.photo = friends[i].photo;
+				bestMatch.friendDifference = totalDifference;
+			}
+		}
+	}
+
+	 friends.push(userInput);
+	 res.json(bestMatch);
 
 	});
 
